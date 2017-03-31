@@ -1,6 +1,6 @@
 .login {
 	display: block;
-	border: 1px solid #8b9dc3;
+	border: 1px solid #ffffff;
 	cursor: pointer;
 	font-weight: 600;
 	letter-spacing: 0.05em;
@@ -14,7 +14,8 @@
 
 .login--facebook {
 	background-color: #3b5998;
-	color: #fff;
+	border: 1px solid #8b9dc3;
+	color: #ffffff;
 
 	&:hover {
 		border: 1px solid #3b5998;
@@ -24,5 +25,23 @@
 	&:active {
 		background: #f7f7f7;
 		color: #3b5998;
+	}
+}
+
+.login--logout {
+	// nodding slowly
+	color: #ffffff;
+	background: #c5515f;
+	border: 1px solid #983e49;
+	width: 100%;
+
+	&:hover {
+		color: #ececec;
+		background: #ce8089;
+	}
+
+	&:active {
+		background: #ffffff;
+		color: #c5515f;
 	}
 }

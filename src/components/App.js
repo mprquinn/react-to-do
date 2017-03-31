@@ -10,6 +10,7 @@ class App extends React.Component {
 
 		this.addTask = this.addTask.bind(this);
 		this.completeTask = this.completeTask.bind(this);
+		this.logout = this.logout.bind(this);
 
 		// set state!
 		this.state = {
@@ -68,6 +69,14 @@ class App extends React.Component {
 		this.setState({ tasks: moreTasks, completed: this.state.completed });
 	}
 
+	logout(e) {
+		e.preventDefault();
+		// console.log(this);
+		localStorage.setItem('username', null);
+		this.setState({auth: false});
+		this.context.router.transitionTo(`/`);
+	}
+
 	render() {
 		return(
 
@@ -89,7 +98,7 @@ class App extends React.Component {
 
 				{/* <h2>Completed items: {this.state.completed}</h2> */}
 
-				<button className="logout" onClick={(e) => this.logout()}>Logout</button>
+				<button className="login login--logout" onClick={(e) => this.logout(e)}>Logout</button>
 
 			</div>
 		);
@@ -98,6 +107,10 @@ class App extends React.Component {
 
 App.propTypes = {
 	params: React.PropTypes.object.isRequired
+}
+
+App.contextTypes = {
+	router: React.PropTypes.object
 }
 
 export default App;
