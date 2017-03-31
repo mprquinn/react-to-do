@@ -13,6 +13,7 @@ class App extends React.Component {
 
 		// set state!
 		this.state = {
+			auth: false,
 			user: null,
 			tasks: {},
 			completed: 0
@@ -28,10 +29,25 @@ class App extends React.Component {
 			state: 'tasks'
 		});
 
-		console.log(this.props.params.userName);
+		// console.log(this.props.params.userName);
+		if (localStorage.username === this.props.params.userName) {
+			this.setState({ auth: true });
+		}
 
-		console.log(this);
 	}
+
+	shouldComponentUpdate(nextProps, nextState) {
+		if (localStorage.username !== this.props.params.userName) {
+			console.log('wrong user!!');
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	componentWillUpdate(nextProps, nextState) {
+	}
+
 
 	addTask(task) {
 		const tasks = {...this.state.tasks};
@@ -42,18 +58,31 @@ class App extends React.Component {
 
 	completeTask(task) {
 		const tasks =  {...this.state.tasks};
-		delete(tasks[task.props.index]);
-		
-		this.setState({ tasks, completed: this.state.completed+1 });
+		tasks[task.props.index] = null
+		// delete does not work with firebase
+		this.setState({ tasks: tasks, completed: this.state.completed+1 });
+
+		// do again???
+		const moreTasks = {...this.state.tasks};
+		delete(moreTasks[task.props.index]);
+		this.setState({ tasks: moreTasks, completed: this.state.completed });
 	}
 
 	render() {
 		return(
 
 			<div className="app-wrapper">
-				
-				<CreateItem addTask={this.addTask} />
 
+				{/* <button className="logout" onClick={(e) => this.logout()}>Logout</button> */}
+				
+				{ this.state.auth ? (
+						<CreateItem addTask={this.addTask} />
+					) : (
+						<h1>You do not have permission to alter this list</h1>
+				)}
+					
+				
+				{console.log(this.state)}
 				<ul className="task__wrapper">
 					{
 						Object.keys(this.state.tasks).map(key => <Task key={key} index={key} desc={this.state.tasks[key]} completeTask={this.completeTask} />)

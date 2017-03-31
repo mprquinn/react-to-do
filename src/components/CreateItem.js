@@ -16,6 +16,7 @@ class CreateItem extends React.Component {
 
 		// add the item
 		this.props.addTask(item);
+		
 		this.taskForm.reset();
 	}
 

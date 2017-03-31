@@ -18,7 +18,6 @@ class Login extends React.Component {
 
 	authenticate(provider) {
 		console.log(`Trying to log in with ${provider}`);
-		// console.log(base);
 		base.authWithOAuthPopup(provider, this.authHandler);
 	}
 
@@ -34,6 +33,7 @@ class Login extends React.Component {
 			username: authData.user.displayName.replace(' ', '-').toLowerCase() 
 		});
 		
+		localStorage.setItem('username', authData.user.displayName.replace(' ', '-').toLowerCase());
 
 		// set up firebase ref
 		const userRef = base.database().ref(this.props.userName);
@@ -51,8 +51,8 @@ class Login extends React.Component {
 
 
 		});
-
-		console.log(this.state);
+		console.log('Login');
+		console.log(this.context);
 		this.goToApp();
 
 	}
