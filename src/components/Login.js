@@ -48,7 +48,7 @@ class Login extends React.Component {
 		
 			if (!data.user_id) {
 				userRef.set({
-					user: authData.user.displayName.replace(' ', '-').toLowerCase(),
+					user: authData.user.displayName,
 					user_id: uid,
 					profile_pic: authData.user.photoURL,
 					completed: 0

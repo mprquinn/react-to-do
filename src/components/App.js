@@ -31,17 +31,17 @@ class App extends React.Component {
 			state: 'tasks'
 		});
 
+	}
+
+	componentDidMount() {
 		// console.log(this.props.params.userName);
 		if (localStorage.user_id === this.props.params.uid) {
 			this.setState({ auth: true });
 		}
-
-	}
-
-	componentDidMount() {
+		
 		const picRef = base.database().ref(this.props.params.uid);
 		
-		picRef.once('value', (snapshot) => {
+		picRef.on('value', (snapshot) => {
 			const data = snapshot.val() || {};
 			this.setState({ pic: data.profile_pic });
 			this.setState({ user: data.user });
@@ -59,7 +59,6 @@ class App extends React.Component {
 	}
 
 	componentWillUpdate(nextProps, nextState) {
-
 	}
 
 
