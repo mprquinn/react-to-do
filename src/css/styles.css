@@ -93,3 +93,36 @@ body {
   transition: all 0.4s ease-in; }
   .task__check a:hover {
     transform: scale(1.5); }
+
+.hero {
+  color: #ffffff;
+  font-size: 4em;
+  letter-spacing: 0.05em;
+  margin: 5% auto 0;
+  text-align: center;
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
+  text-shadow: #cccccc 0px 1px 0px, #c9c9c9 0px 2px 0px, #bbbbbb 0px 3px 0px, #b9b9b9 0px 4px 0px, #aaaaaa 0px 5px 0px, rgba(0, 0, 0, 0.0980392) 0px 6px 1px, rgba(0, 0, 0, 0.0980392) 0px 0px 5px, rgba(0, 0, 0, 0.298039) 0px 1px 3px, rgba(0, 0, 0, 0.14902) 0px 3px 5px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.2) 0px 10px 10px, rgba(0, 0, 0, 0.0980392) 0px 20px 20px;
+  text-transform: uppercase; }
+
+.login {
+  display: block;
+  border: 1px solid #8b9dc3;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  margin: 2em auto;
+  max-width: 360px;
+  padding: 1em 2em;
+  text-align: center;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.77, 0, 0.175, 1); }
+
+.login--facebook {
+  background-color: #3b5998;
+  color: #fff; }
+  .login--facebook:hover {
+    border: 1px solid #3b5998;
+    background-color: #8b9dc3; }
+  .login--facebook:active {
+    background: #f7f7f7;
+    color: #3b5998; }

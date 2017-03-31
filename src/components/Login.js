@@ -66,7 +66,7 @@ class Login extends React.Component {
 
 	render () {
 		return (
-			<button className="facebook" onClick={() => this.authenticate('facebook')}>
+			<button className="login login--facebook" onClick={() => this.authenticate('facebook')}>
 				Log in With Facebook
 			</button>
 		);

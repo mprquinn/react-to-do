@@ -72,8 +72,6 @@ class App extends React.Component {
 		return(
 
 			<div className="app-wrapper">
-
-				{/* <button className="logout" onClick={(e) => this.logout()}>Logout</button> */}
 				
 				{ this.state.auth ? (
 						<CreateItem addTask={this.addTask} />
@@ -90,6 +88,9 @@ class App extends React.Component {
 				</ul>
 
 				{/* <h2>Completed items: {this.state.completed}</h2> */}
+
+				<button className="logout" onClick={(e) => this.logout()}>Logout</button>
+
 			</div>
 		);
 	}

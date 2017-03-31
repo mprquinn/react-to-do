@@ -13,6 +13,7 @@ const Root = () => {
 	return (
 		<BrowserRouter>
 			<div>
+				<h1 className="hero">To Do App</h1>
 				<Match exactly pattern="/" component={Login} />
 				<Match exactly pattern="/user/:userName" component={App} />
 				<Miss component={NotFound} />
