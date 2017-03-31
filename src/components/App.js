@@ -23,22 +23,21 @@ class App extends React.Component {
 
 	componentWillMount() {
 		// console.log('APP WILL MOUNT')
-		// console.log(this.props.params);
 		// lets load up the database
-		this.ref = base.syncState(`${this.props.params.userName}/tasks`, {
+		this.ref = base.syncState(`${this.props.params.uid}/tasks`, {
 			context: this,
 			state: 'tasks'
 		});
 
 		// console.log(this.props.params.userName);
-		if (localStorage.username === this.props.params.userName) {
+		if (localStorage.user_id === this.props.params.uid) {
 			this.setState({ auth: true });
 		}
 
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
-		if (localStorage.username !== this.props.params.userName) {
+		if (localStorage.user_id !== this.props.params.uid) {
 			console.log('wrong user!!');
 			return false;
 		} else {
@@ -72,7 +71,7 @@ class App extends React.Component {
 	logout(e) {
 		e.preventDefault();
 		// console.log(this);
-		localStorage.setItem('username', null);
+		localStorage.setItem('user_id', null);
 		this.setState({auth: false});
 		this.context.router.transitionTo(`/`);
 	}
@@ -89,7 +88,6 @@ class App extends React.Component {
 				)}
 					
 				
-				{console.log(this.state)}
 				<ul className="task__wrapper">
 					{
 						Object.keys(this.state.tasks).map(key => <Task key={key} index={key} desc={this.state.tasks[key]} completeTask={this.completeTask} />)

@@ -17,7 +17,6 @@ class Login extends React.Component {
 	}
 
 	authenticate(provider) {
-		console.log(`Trying to log in with ${provider}`);
 		base.authWithOAuthPopup(provider, this.authHandler);
 	}
 
@@ -28,39 +27,45 @@ class Login extends React.Component {
 			return;
 		}
 
+		const slug = authData.user.displayName.replace(' ', '-').toLowerCase();
+		const uid = authData.user.uid;
+		
 		this.setState({ 
-			uid: authData.user.uid,
-			username: authData.user.displayName.replace(' ', '-').toLowerCase() 
+			uid: uid,
+			username: slug
 		});
 		
-		localStorage.setItem('username', authData.user.displayName.replace(' ', '-').toLowerCase());
-
+		localStorage.setItem('username', slug);
+		localStorage.setItem('user_id', uid);
 		// set up firebase ref
-		const userRef = base.database().ref(this.props.userName);
-
+		const databaseRef = base.database().ref();
+		const userRef = base.database().ref(uid);
+		// console.log(this.props.userName);
 		// query firebase
 		userRef.once('value', (snapshot) => {
 			const data = snapshot.val() || {};
-
-			if (!data.uid) {
+			console.log(data);
+			if (!data.user_id) {
 				userRef.set({
-					uid: authData.user.displayName.replace(' ', '-').toLowerCase(),
+					user: authData.user.displayName.replace(' ', '-').toLowerCase(),
+					user_id: uid
 				});
-
+			} else {
+				console.log('we have a uid');
 			}
 
 
 		});
-		console.log('Login');
-		console.log(this.context);
+
 		this.goToApp();
 
 	}
 
 	goToApp() {
 		const slug = this.state.username;
+		const uid = this.state.uid;
 		// console.log(this);
-		this.context.router.transitionTo(`/user/${slug}`);
+		this.context.router.transitionTo(`/user/${uid}`);
 	}
 
 
