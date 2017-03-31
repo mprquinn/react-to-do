@@ -8,6 +8,11 @@ body {
   max-width: 360px;
   margin: 0 auto; }
 
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both; }
+
 * {
   box-sizing: border-box; }
 
@@ -138,3 +143,20 @@ body {
   .login--logout:active {
     background: #ffffff;
     color: #c5515f; }
+
+.profile {
+  background: #ededed;
+  margin: 2em 0 0;
+  padding: 1em; }
+
+.profile__pic {
+  float: left;
+  margin-right: 1em; }
+
+.profile__name {
+  float: left;
+  margin-top: 0; }
+
+.profile__completed {
+  display: block;
+  float: left; }

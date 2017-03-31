@@ -2,6 +2,7 @@ import React from 'react';
 import CreateItem from './CreateItem';
 import Task from './Task';
 import base from '../base';
+import Profile from './Profile';
 
 class App extends React.Component {
 
@@ -17,7 +18,8 @@ class App extends React.Component {
 			auth: false,
 			user: null,
 			tasks: {},
-			completed: 0
+			completed: 0,
+			pic: null
 		};
 	}
 
@@ -36,6 +38,17 @@ class App extends React.Component {
 
 	}
 
+	componentDidMount() {
+		const picRef = base.database().ref(this.props.params.uid);
+		
+		picRef.once('value', (snapshot) => {
+			const data = snapshot.val() || {};
+			this.setState({ pic: data.profile_pic });
+			this.setState({ user: data.user });
+			this.setState({ completed: data.completed });
+		});
+	}
+
 	shouldComponentUpdate(nextProps, nextState) {
 		if (localStorage.user_id !== this.props.params.uid) {
 			console.log('wrong user!!');
@@ -46,6 +59,7 @@ class App extends React.Component {
 	}
 
 	componentWillUpdate(nextProps, nextState) {
+
 	}
 
 
@@ -80,6 +94,8 @@ class App extends React.Component {
 		return(
 
 			<div className="app-wrapper">
+
+				<Profile pic={this.state.pic} user={this.state.user} completed={this.state.completed} />
 				
 				{ this.state.auth ? (
 						<CreateItem addTask={this.addTask} />

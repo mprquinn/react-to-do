@@ -41,14 +41,17 @@ class Login extends React.Component {
 		const databaseRef = base.database().ref();
 		const userRef = base.database().ref(uid);
 		// console.log(this.props.userName);
+
 		// query firebase
 		userRef.once('value', (snapshot) => {
 			const data = snapshot.val() || {};
-			console.log(data);
+		
 			if (!data.user_id) {
 				userRef.set({
 					user: authData.user.displayName.replace(' ', '-').toLowerCase(),
-					user_id: uid
+					user_id: uid,
+					profile_pic: authData.user.photoURL,
+					completed: 0
 				});
 			} else {
 				console.log('we have a uid');
