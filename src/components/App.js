@@ -1,6 +1,7 @@
 import React from 'react';
 import CreateItem from './CreateItem';
 import Task from './Task';
+import base from '../base';
 
 class App extends React.Component {
 
@@ -12,9 +13,24 @@ class App extends React.Component {
 
 		// set state!
 		this.state = {
+			user: null,
 			tasks: {},
 			completed: 0
 		};
+	}
+
+	componentWillMount() {
+		// console.log('APP WILL MOUNT')
+		// console.log(this.props.params);
+		// lets load up the database
+		this.ref = base.syncState(`${this.props.params.userName}/tasks`, {
+			context: this,
+			state: 'tasks'
+		});
+
+		console.log(this.props.params.userName);
+
+		console.log(this);
 	}
 
 	addTask(task) {
@@ -48,6 +64,10 @@ class App extends React.Component {
 			</div>
 		);
 	}
+}
+
+App.propTypes = {
+	params: React.PropTypes.object.isRequired
 }
 
 export default App;

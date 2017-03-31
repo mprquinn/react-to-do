@@ -1,8 +1,24 @@
 // let's go!
 import React from 'react';
 import { render } from 'react-dom';
+import { BrowserRouter, Match, Miss} from 'react-router';
+
 import './css/styles.css';
 
 import App from './components/App';
+import Login from './components/Login';
+import NotFound from './components/NotFound';
 
-render(<App/>, document.querySelector('#main'));
+const Root = () => {
+	return (
+		<BrowserRouter>
+			<div>
+				<Match exactly pattern="/" component={Login} />
+						<Match exactly pattern="/user/:userName" component={App} />
+				<Miss component={NotFound} />
+			</div>
+		</BrowserRouter>
+	)
+}
+
+render(<Root />, document.querySelector('#main'));

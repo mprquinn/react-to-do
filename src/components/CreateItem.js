@@ -2,6 +2,11 @@ import React from 'react';
 
 class CreateItem extends React.Component {
 
+	componentWillMount() {
+		// this.ref = base.syncState(`{this.props.params.user`)
+		console.log(this.props.params);
+	}
+
 	createItem(event) {
 		event.preventDefault();
 
