@@ -1,0 +1,58 @@
+.task__wrapper {
+	clear: both;
+	float: left;
+	margin: 1em 0;
+	padding: 0;
+	width: 100%;
+}
+
+.task {
+	background: rgba(255,255,255,0.39);
+	box-shadow: 2px 2px 3px rgba(0,0,0,0.3);
+	font-weight: 600;
+	letter-spacing: 0.05em;
+	list-style-type: none;
+	margin: 0 0 1em;
+	overflow: hidden;
+	position: relative;
+}
+
+.task__text {
+	color: #333333;
+	display: block;
+	float: right;
+	padding: 1em;
+	text-align: left;
+	width: 100%;
+}
+
+
+.task__check {
+	display: block;
+	background: #a6c1ee;
+	color: #ededed;
+	cursor: pointer;
+	float: left;
+	opacity: 0.9;
+	position: absolute;
+	text-align: center;
+	transition: transform 0.3s ease-in;
+	transform: translateX(-100%);
+	width: 100%;
+
+	.task:hover & {
+		transform: translateX(0);
+	}
+}
+
+
+.task__check a {
+	display: block;
+	padding: 1em;
+	text-decoration: none;
+	transition: all 0.4s ease-in;
+
+	&:hover {
+		transform: scale(1.5);
+	}
+}
